@@ -16,3 +16,14 @@ Use the code from the [DeepSeek chat](https://chat.deepseek.com/share/cc7tho1ugy
 - Upload the STM32 code and verify encoder data appears in ROS topics
 
  **Note**: the non ros file  is a test code
+
+## 📋 Prerequisites
+
+### 1. Install ROS Noetic (Ubuntu 20.04)
+
+Open a terminal and run the following commands:
+
+```bash
+sudo apt install ros-noetic-rosserial
+sudo apt install ros-noetic-rosserial-arduino
+sudo apt install ros-noetic-rosserial-python 
