@@ -15,6 +15,10 @@ In a robotic system, simply sending commands to motors without feedback leads to
 - Inability to maintain straight-line motion (one wheel may spin faster than the other)
 
 ### The Solution
+
+# 🧠 System Mind Map
+
+![System Mind Map](images/Motor Stm32 Flow-2026-05-24-133236.png)
 The STM32 reads encoder pulses (A and B channels) to compute:
 1. **Current wheel ticks** - How much each wheel has rotated
 2. **Actual motor speed (RPM)** - How fast each motor is currently spinning
