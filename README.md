@@ -1,6 +1,5 @@
 # MIA-ENCODERS
-ROS commination between encoders ,STM and ROS
-
+ROS communication between encoders, STM32 and ROS
 
 ## 📋 Problem Statement
 
@@ -28,24 +27,69 @@ Using this feedback, the STM32:
 2. Adjusts the PWM signals sent to motor drivers to minimize the error
 3. Publishes the actual encoder data back to ROS for odometry and monitoring
 
+## 🛠️ Setup
 
-## set up
+### For Linux (Ubuntu 20.04)
 
-### 1. Set up your STM32
-Follow the [Programming Guide](https://github.com/Abdalla-El-gohary/Programming-Stm32-Using-Arduino-IDE) to configure the Arduino IDE for STM32 on linux or windows.
+#### 1. Set up your STM32
+Follow the [Programming Guide](https://github.com/Abdalla-El-gohary/Programming-Stm32-Using-Arduino-IDE) to configure the Arduino IDE for STM32 on Linux.
 
-### 2. Test the encoder example
+#### 2. Test the encoder example
 Use the code from the [DeepSeek chat](https://chat.deepseek.com/share/d3j6axdn28htyv53vb) to:
 - Read encoder pins (A and B channels)
 - Compute wheel ticks and speed
 - Publish ROS messages over serial
 
-### 3. Connect to ROS
+#### 3. Connect to ROS
 - Run `roscore`
 - Start `rosserial` (or `micro-ros-agent`) on your PC
 - Upload the STM32 code and verify encoder data appears in ROS topics
 
- **Note**: the non ros file  is a test code
+**Note**: The non-ROS file is a test code
+
+### For Windows
+
+#### 1. Set up your STM32
+Follow the [Programming Guide](https://github.com/Abdalla-El-gohary/Programming-Stm32-Using-Arduino-IDE) to configure the Arduino IDE for STM32 on Windows.
+
+#### 2. Install CP210x USB-to-Serial Drivers
+The STM32 board typically uses a CP210x chip for USB communication. Windows needs drivers to recognize it:
+
+1. **Download the drivers:**
+   Download from Silicon Labs official site:
+   [CP210x_VCP_Windows.zip](https://www.silabs.com/documents/public/software/CP210x_VCP_Windows.zip)
+
+2. **Install the drivers:**
+   - Extract the downloaded ZIP file
+   - Run the installer appropriate for your system (usually `CP210xVCPInstaller_x64.exe` for 64-bit Windows)
+
+#### 3. Verify COM Port Detection
+
+1. **Open Device Manager:**
+   - Right-click on Start Menu → Device Manager
+   - Or press `Win + X` and select Device Manager
+
+2. **Check COM port assignment:**
+   - Plug in your STM32 board via USB
+   - In Device Manager, look for **"Ports (COM & LPT)"** section
+   - You should see something like `"Silicon Labs CP210x USB to UART Bridge (COM10)"`
+   - If you see an **"Other devices"** section with an unknown device that appears/disappears when you plug/unplug the board, the driver is not installed correctly
+
+3. **Confirm the COM port:**
+   - The port number (e.g., COM10) is what you'll use in Arduino IDE and ROS serial communication
+   - In this example setup, we're using **COM10**
+
+#### 4. Configure Arduino IDE for Windows
+- Select the correct COM port (COM10 in this case) in Arduino IDE under Tools → Port
+- Select your STM32 board under Tools → Board
+
+#### 5. Test the encoder example
+Use the code from the [DeepSeek chat](https://chat.deepseek.com/share/d3j6axdn28htyv53vb) to:
+- Read encoder pins (A and B channels)
+- Compute wheel ticks and speed
+- Publish ROS messages over serial
+
+**Note**: The non-ROS file is a test code
 
 ## 📋 Prerequisites
 
@@ -54,6 +98,23 @@ Use the code from the [DeepSeek chat](https://chat.deepseek.com/share/d3j6axdn28
 Open a terminal and run the following commands:
 
 ```bash
+# Add ROS repository
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+
+# Add ROS keys
+sudo apt install curl
+curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+
+# Update package list
+sudo apt update
+
+# Install ROS Noetic Desktop Full
+sudo apt install ros-noetic-desktop-full
+
+# Install rosserial for communication with STM32
 sudo apt install ros-noetic-rosserial
 sudo apt install ros-noetic-rosserial-arduino
-sudo apt install ros-noetic-rosserial-python 
+
+# Setup ROS environment
+echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
