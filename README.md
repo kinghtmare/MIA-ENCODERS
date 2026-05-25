@@ -119,7 +119,75 @@ sudo apt install ros-noetic-rosserial-arduino
 echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
-## 📊 Technical Report
-### 1-how the code works 
+# 📊 Technical Report
 
+## 1. How the Code Works
+
+The system relies on hardware interrupts to trace the orientation and velocity of the vehicle's wheels. An Interrupt Service Routine (ISR) monitors **Channel A** of the quadrature encoder. The moment Channel A toggles state, the microcontroller checks the instantaneous state of Channel B.
+
+- If Channel A and Channel B are in **different logical states**, the wheel is spinning **forward**, triggering a tick increment (`counter++`).
+- If their logical states **match**, the wheel is spinning in **reverse**, triggering a tick decrement (`counter--`).
+
+A background loop executes asynchronously every **500ms** to snapshot this raw counter data, compute elapsed derivatives safely while interrupts are briefly paused, and parse the data into real-world mathematical metrics before shifting them across the serial bridge.
+
+---
+
+## 2. Mathematical Formulations
+
+To translate raw digital steps into usable physical metrics for localization and odometry, the firmware executes calculations across three foundational areas: **geometry**, **scaling**, and **differential kinematics**.
+
+---
+
+### A. Wheel Circumference
+
+The physical distance covered by a single full 360° rotation of the actuator is equivalent to the wheel's circumference:
+
+$$\text{Circumference} = \pi \times d$$
+
+| Variable | Value |
+|----------|-------|
+| Diameter ($d$) | $10.0 \text{ cm}$ |
+| Constant ($\pi$) | $\approx 3.14159$ |
+
+$$\text{Circumference} = 3.14159 \times 10.0 = 31.4159 \text{ cm}$$
+
+---
+
+### B. Scaling Factor (Distance Per Count)
+
+To map an isolated tick back to a distance value, the total circumference is evenly segmented by the hardware resolution capability of the encoder ($360.0 \text{ Counts Per Revolution}$):
+
+$$D_{\text{count}} = \frac{\text{Circumference}}{\text{Counts Per Revolution}}$$
+
+$$D_{\text{count}} = \frac{31.4159 \text{ cm}}{360.0} \approx 0.087266 \text{ cm/count}$$
+
+---
+
+### C. Absolute Distance Calculation
+
+Total absolute displacement ($s$) achieved by the wheel since system initialization is a linear mapping of cumulative ticks:
+
+$$s = \text{Current Count} \times D_{\text{count}}$$
+
+---
+
+### D. Velocity Estimation
+
+Velocity ($v$) is calculated dynamically inside the timed loop structure as the change in distance over a discrete time window ($\Delta t \approx 0.5 \text{ seconds}$):
+
+$$v = \frac{\Delta s}{\Delta t}$$
+
+**Where:**
+
+**1. Time Interval ($\Delta t$)** — Evaluated via the processor system clock to dynamically accommodate minor loop jitter:
+
+$$\Delta t = \frac{\text{currentTime} - \text{lastTime}}{1000.0}$$
+
+**2. Counter Delta ($\Delta \text{count}$)** — The net change in ticks during the window:
+
+$$\Delta \text{count} = \text{currentCount} - \text{lastCounter}$$
+
+**3. Displacement Delta ($\Delta s$)** — The physical distance cleared during the window:
+
+$$\Delta s = \Delta \text{count} \times D_{\text{count}}$$
 
