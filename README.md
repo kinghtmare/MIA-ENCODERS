@@ -32,7 +32,7 @@ Using this feedback, the STM32:
 ## set up
 
 ### 1. Set up your STM32
-Follow the [Programming Guide](https://github.com/Abdalla-El-gohary/Programming-Stm32-Using-Arduino-IDE) to configure the Arduino IDE for STM32 on linux.
+Follow the [Programming Guide](https://github.com/Abdalla-El-gohary/Programming-Stm32-Using-Arduino-IDE) to configure the Arduino IDE for STM32 on linux or windows.
 
 ### 2. Test the encoder example
 Use the code from the [DeepSeek chat](https://chat.deepseek.com/share/d3j6axdn28htyv53vb) to:
