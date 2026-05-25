@@ -118,3 +118,7 @@ sudo apt install ros-noetic-rosserial-arduino
 # Setup ROS environment
 echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
+```
+## 📊 Technical Report
+
+
