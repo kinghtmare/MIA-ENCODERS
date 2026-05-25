@@ -120,5 +120,6 @@ echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
 ## 📊 Technical Report
+### 1-how the code works 
 
 
