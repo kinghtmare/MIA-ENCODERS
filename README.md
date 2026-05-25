@@ -87,7 +87,7 @@ The STM32 board typically uses a CP210x chip for USB communication. Windows need
 Use the code from the [DeepSeek chat](https://chat.deepseek.com/share/d3j6axdn28htyv53vb) to:
 - Read encoder pins (A and B channels)
 - Compute wheel ticks and speed
-- Publish ROS messages over serial
+
 
 **Note**: The non-ROS file is a test code
 
