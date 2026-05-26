@@ -35,7 +35,7 @@ Using this feedback, the STM32:
 Follow the [Programming Guide](https://github.com/Abdalla-El-gohary/Programming-Stm32-Using-Arduino-IDE) to configure the Arduino IDE for STM32 on Linux.
 
 #### 2. Test the encoder example
-Use the code from the [DeepSeek chat](https://chat.deepseek.com/share/d3j6axdn28htyv53vb) to:
+Use the code from [non-ROS esp.cpp](https://github.com/kinghtmare/MIA-ENCODERS/blob/main/non-ROS%20esp.cpp) to:
 - Read encoder pins (A and B channels)
 - Compute wheel ticks and speed
 - Publish ROS messages over serial
@@ -84,7 +84,7 @@ The STM32 board typically uses a CP210x chip for USB communication. Windows need
 - Select your STM32 board under Tools → Board
 
 #### 5. Test the encoder example
-Use the code from the [DeepSeek chat](https://chat.deepseek.com/share/d3j6axdn28htyv53vb) to:
+Use the code from [non-ROS stm.cpp](https://github.com/kinghtmare/MIA-ENCODERS/blob/main/non-ROS%20stm.cpp) to:
 - Read encoder pins (A and B channels)
 - Compute wheel ticks and speed
 
@@ -123,18 +123,18 @@ source ~/.bashrc
 
 ## 1. How the Code Works
 
-The system relies on hardware interrupts to trace the orientation and velocity of the vehicle's wheels. An Interrupt Service Routine (ISR) monitors **Channel A** of the quadrature encoder. The moment Channel A toggles state, the microcontroller checks the instantaneous state of Channel B.
+The system relies on hardware interrupts to trace the orientation and velocity of the vehicle's wheels. An Interrupt Service Routine (ISR) monitors **Channel A** of the quadrature encoder. The moment [...]
 
 - If Channel A and Channel B are in **different logical states**, the wheel is spinning **forward**, triggering a tick increment (`counter++`).
 - If their logical states **match**, the wheel is spinning in **reverse**, triggering a tick decrement (`counter--`).
 
-A background loop executes asynchronously every **500ms** to snapshot this raw counter data, compute elapsed derivatives safely while interrupts are briefly paused, and parse the data into real-world mathematical metrics before shifting them across the serial bridge.
+A background loop executes asynchronously every **500ms** to snapshot this raw counter data, compute elapsed derivatives safely while interrupts are briefly paused, and parse the data into real-world [...]
 
 ---
 
 ## 2. Mathematical Formulations
 
-To translate raw digital steps into usable physical metrics for localization and odometry, the firmware executes calculations across three foundational areas: **geometry**, **scaling**, and **differential kinematics**.
+To translate raw digital steps into usable physical metrics for localization and odometry, the firmware executes calculations across three foundational areas: **geometry**, **scaling**, and **differen[...]
 
 ---
 
