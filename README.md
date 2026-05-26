@@ -34,8 +34,8 @@ Using this feedback, the STM32:
 #### 1. Set up your STM32
 Follow the [Programming Guide](https://github.com/Abdalla-El-gohary/Programming-Stm32-Using-Arduino-IDE) to configure the Arduino IDE for STM32 on Linux.
 
-#### 2. Test the encoder example
-Use the code from [non-ROS esp.cpp](https://github.com/kinghtmare/MIA-ENCODERS/blob/main/non-ROS%20esp.cpp) to:
+#### 2. Test the encoder example for stm 32 
+Use the code from [non-ROS esp.cpp](https://github.com/kinghtmare/MIA-ENCODERS/blob/main/non-ROS%20stm.cpp) to:
 - Read encoder pins (A and B channels)
 - Compute wheel ticks and speed
 - Publish ROS messages over serial
@@ -83,13 +83,11 @@ The STM32 board typically uses a CP210x chip for USB communication. Windows need
 - Select the correct COM port (COM10 in this case) in Arduino IDE under Tools → Port
 - Select your STM32 board under Tools → Board
 
-#### 5. Test the encoder example
-Use the code from [non-ROS stm.cpp](https://github.com/kinghtmare/MIA-ENCODERS/blob/main/non-ROS%20stm.cpp) to:
+#### 5. Test the encoder example for esp32
+Use the code from [non-ROS stm.cpp](https://github.com/kinghtmare/MIA-ENCODERS/blob/main/non-ROS%20esp.cpp) to:
 - Read encoder pins (A and B channels)
 - Compute wheel ticks and speed
 
-
-**Note**: The non-ROS file is a test code
 
 ## 📋 Prerequisites
 
