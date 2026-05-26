@@ -191,3 +191,31 @@ $$\Delta \text{count} = \text{currentCount} - \text{lastCounter}$$
 
 $$\Delta s = \Delta \text{count} \times D_{\text{count}}$$
 
+
+
+## 3. Sample Serial Output
+
+### ▶ Forward Motion
+
+Position:  28 counts | Distance:  2.44 cm | Velocity:  4.89 cm/s
+Position:  58 counts | Distance:  5.06 cm | Velocity:  5.24 cm/s
+Position:  89 counts | Distance:  7.77 cm | Velocity:  5.41 cm/s
+
+
+### ◀ Reverse Motion
+
+Position:  62 counts | Distance:  5.41 cm | Velocity:  4.71 cm/s
+Position:  34 counts | Distance:  2.97 cm | Velocity:  4.89 cm/s
+Position:  -7 counts | Distance: -0.61 cm | Velocity:  4.71 cm/s
+
+### ⏸ No Motion
+
+ESP32 is running... (waiting for encoder input)
+Position:  -7 counts | Distance: -0.61 cm | Velocity:  0.00 cm/s
+
+
+> **Direction Key:**
+> - Count/Distance **increasing** → Forward
+> - Count/Distance **decreasing or negative** → Reverse
+> - Velocity is **always positive** — speed magnitude only
+
