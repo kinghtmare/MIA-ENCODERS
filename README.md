@@ -17,7 +17,7 @@ In a robotic system, simply sending commands to motors without feedback leads to
 
 ### 🧠 System Mind Map
 
-![STM32 Flow Diagram](images/Stm32%20Flow.png)
+![ESP-WROOM-32 Flow Diagram](https://github.com/kinghtmare/MIA-ENCODERS/blob/142c8bf8ae9ab0f368e5b923a493bc513ceb3007/images/ESP-WROOM-32/ESP-WROOM-32%20Flow.png)
 The STM32 reads encoder pulses (A and B channels) to compute:
 1. **Current wheel ticks** - How much each wheel has rotated
 2. **Actual motor speed (RPM)** - How fast each motor is currently spinning
