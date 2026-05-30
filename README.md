@@ -96,7 +96,7 @@ rosrun rosserial_python serial_node.py _port:=/dev/ttyUSB0 _baud:=115200
 
 # Terminal 3 — your listener
 python3 encoder_listener.py
-```
+
 3. Verify data:
    ```bash
    rostopic echo /encoder_data
