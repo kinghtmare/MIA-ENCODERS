@@ -87,7 +87,7 @@ Use this first to verify your encoder wiring before introducing ROS.
 
 1. Flash [ESP-V2](https://github.com/kinghtmare/MIA-ENCODERS/tree/142c8bf8ae9ab0f368e5b923a493bc513ceb3007/MCU/non-ros/ESP-WROOM-32/(%2Bve)V2.cpp) to your ESP32
 2. On your PC:
-   ```bash
+```bash
    # Terminal 1 — always first
 roscore
 
@@ -96,6 +96,7 @@ rosrun rosserial_python serial_node.py _port:=/dev/ttyUSB0 _baud:=115200
 
 # Terminal 3 — your listener
 python3 encoder_listener.py
+```
 
 3. Verify data:
    ```bash
