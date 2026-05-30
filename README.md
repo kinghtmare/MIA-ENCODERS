@@ -89,7 +89,7 @@ Use this first to verify your encoder wiring before introducing ROS.
 2. On your PC:
 ```bash
    # Terminal 1 — always first
-roscore
+    roscore
 
 # Terminal 2 — rosserial bridge (plug in ESP32 first)
 rosrun rosserial_python serial_node.py _port:=/dev/ttyUSB0 _baud:=115200
