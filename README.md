@@ -46,7 +46,7 @@ Connect each encoder's A and B channels to interrupt-capable GPIO pins on the MC
 
 | MCU           | Non-ROS | ROS (rosserial) |
 |---------------|---------|-----------------|
-| STM32         | ✅      | ✅              |
+| STM32         | ✅      | ❌              |
 | ESP-WROOM-32  | ✅      | ✅              |
 
 ---
