@@ -28,7 +28,6 @@ MCU/
 │   │  
 │   └── STM32F103C8T6/
 │       └── STM32-V1.cpp/         
-│       └── STM32-V2.cpp/ 
 │  
 └── ros/
     └── ESP-WROOM-32/
