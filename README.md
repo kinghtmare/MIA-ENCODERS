@@ -8,7 +8,7 @@ ROS-integrated encoder feedback system for differential-drive robots — STM32 &
 
 Without encoder feedback, motor commands are open-loop: the robot has no way to know if a wheel stalled, slipped, or drifted. This system closes that loop.
 
-The microcontroller reads quadrature encoder pulses via hardware interrupts, computes wheel ticks and velocity, then either publishes raw serial output (non-ROS) or pushes data to ROS topics for odometry and PID control.
+The microcontroller reads quadrature encoder pulses via hardware interrupts, computes wheel ticks and velocity, then either publishes raw serial output (non-ROS) or pushes data to ROS topics for odometry.
 
 ### 🧠 System Mind Map
 
@@ -27,6 +27,8 @@ MCU/
     └── ESP-WROOM-32/
         ├── v1(±ve)/         # Bidirectional signed output
         └── v2(+ve)/         # Positive-only output with X-axis direction flag
+
+TECH-DIVE.md                 # ESP32 Firmware Architecture — V1 vs V2 deep dive
 ```
 
 ---
@@ -71,7 +73,7 @@ source ~/.bashrc
 for linux/windows Follow the [STM32 Arduino IDE setup guide](https://github.com/Abdalla-El-gohary/Programming-Stm32-Using-Arduino-IDE).
 
 **Windows — CP210x USB Driver**
-Download from [Silicon Labs](https://www.silabs.com/documents/public/software/CP210x_VCP_Windows.zip), run `CP210xVCPInstaller_x64.exe`, then verify the COM port appears under Device Manager → Ports (COM & LPT).
+Download from [Silicon Labs](https://www.silabs.com/documents/public/software/CP210x_VCP_Windows.zip), run `CP210xVCPInstaller_x64.exe`, then verify the COM port appears under Device Manager → Ports.
 
 ---
 
@@ -142,7 +144,9 @@ $$s = \text{total count} \times D_{\text{count}}$$
 
 **V2** — Resets counter on direction change; exposes `X_axis` (`+1` / `-1`) as a separate variable. Cleaner for visualization and downstream processing.
 
-> **ISR synchronization note:** Early versions contained a race condition where the ISR could reset `counter` while the main loop was reading it, producing phantom zero-velocity spikes. Both current versions use atomic access to fix this. The old `if (deltaCount < 0) deltaCount = 0` guard was masking the symptom — not fixing the root cause.
+→ **[ESP32 Firmware Architecture](./MCU/non-ros/ESP-WROOM-32/TECH-DIVE.md)** — Detailed deep dive into V1 vs V2 design, ISR synchronization, and race condition fixes.
+
+> **ISR synchronization note:** Early versions contained a race condition where the ISR could reset `counter` while the main loop was reading it, producing phantom zero-velocity spikes. Both current versions resolve this through atomic snapshots and main-loop-only resets.
 
 ---
 
