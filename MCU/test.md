@@ -1,4 +1,4 @@
-# ESP32 Quadrature Encoder — Odometry System
+# ESP32 Quadrature Encoder — V1
 
 High-performance wheel position, distance, and velocity tracking for mobile robotics and precision motion control.
 
