@@ -92,7 +92,7 @@ Use this first to verify your encoder wiring before introducing ROS.
 
 ### Quickstart (ROS)
 
-1. Flash [ESP-V2](https://github.com/kinghtmare/MIA-ENCODERS/tree/142c8bf8ae9ab0f368e5b923a493bc513ceb3007/MCU/non-ros/ESP-WROOM-32/(%2Bve)V2.cpp) to your ESP32
+1. Flash [ESP-V2](https://github.com/kinghtmare/MIA-ENCODERS/tree/fe590917ae01d5b2bd3ef534e007674fd28c84b7/MCU/ros/ESP-WROOM-32/v2%20(%2Bve)/encoder_publisher_v2) to your ESP32
 2. On your PC:
 ```bash
 # Terminal 1 — always first
