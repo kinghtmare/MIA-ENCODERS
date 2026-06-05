@@ -21,14 +21,16 @@ The microcontroller reads quadrature encoder pulses via hardware interrupts, com
 ```
 MCU/
 ├── non-ros/
-│   ├── ESP-WROOM-32/        # Standalone encoder test — ESP32
-│   └── STM32/               # Standalone encoder test — STM32
+│   ├── ESP-WROOM-32/
+│   │   ├── (±ve)V1.cpp/          # Bidirectional encoder (V1)
+│   │   ├── (+ve)V2.cpp/          # Always-positive encoder (V2)
+│   │   └── TECH-DIVE.md          # Firmware Architecture — V1 vs V2 deep dive
+│   └── STM32F103C8T6/
+│       └── STM32-V1.cpp/         # STM32 bidirectional encoder
 └── ros/
     └── ESP-WROOM-32/
-        ├── v1(±ve)/         # Bidirectional signed output
-        └── v2(+ve)/         # Positive-only output with X-axis direction flag
-
-TECH-DIVE.md                 # ESP32 Firmware Architecture — V1 vs V2 deep dive
+        ├── v1(±ve)/              # Bidirectional ROS publisher
+        └── v2(+ve)/              # Always-positive ROS publisher with X-axis direction
 ```
 
 ---
