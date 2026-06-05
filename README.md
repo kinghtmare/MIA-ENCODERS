@@ -25,9 +25,11 @@ MCU/
 │   │   ├── (±ve)V1.cpp/          # Bidirectional encoder (V1)
 │   │   ├── (+ve)V2.cpp/          # Always-positive encoder (V2)
 │   │   └── TECH-DIVE.md          # Firmware Architecture — V1 vs V2 deep dive
+│   │  
 │   └── STM32F103C8T6/
 │       └── STM32-V1.cpp/         
-│       └── STM32-V2.cpp/        
+│       └── STM32-V2.cpp/ 
+│  
 └── ros/
     └── ESP-WROOM-32/
         ├── v1(±ve)/              # Bidirectional ROS publisher
