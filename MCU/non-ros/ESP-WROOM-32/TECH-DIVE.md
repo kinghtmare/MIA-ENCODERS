@@ -36,8 +36,8 @@ Ch A  __|   |___|   |___           ___|   |___|   |__
            ___     ___             ___     ___
 Ch B  ____|   |___|   |___     ___|   |___|   |______
 
-   A↑  B != A → CW (+1)       A↑  B == A → CCW (-1)
-   A↓  B != A → CW (+1)       A↓  B == A → CCW (-1)
+   A↑  B != A → CW (+1)         A↑  B == A → CCW (-1)
+   A↓  B != A → CW (+1)         A↓  B == A → CCW (-1)
 ```
 
 Interrupt fires on **both edges of Channel A** (CHANGE) → 2× resolution vs. single-edge.
