@@ -147,8 +147,8 @@ void loop() {
 
 
 
-## **Potential Improvements:**
-1. **Add acceleration calculation**
-2. **Implement moving average filter** for smoother velocity
-3. **Add error checking** for missed encoder counts
-4. **Use hardware pulse counter** (ESP32 PCNT) for higher speeds
+//## **Potential Improvements:**
+//1. **Add acceleration calculation**
+//2. **Implement moving average filter** for smoother velocity
+//3. **Add error checking** for missed encoder counts
+//4. **Use hardware pulse counter** (ESP32 PCNT) for higher speeds
